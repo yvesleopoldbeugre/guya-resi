@@ -1,58 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Guya Resi - Site Vitrine
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Ce projet est le site vitrine officiel du groupe résidentiel **Guya Resi**, situé à Abidjan (Angré Nouveau CHU). Il a été conçu pour offrir une expérience utilisateur haut de gamme, moderne et fluide, permettant aux visiteurs de découvrir les résidences, les équipements et de réserver facilement.
 
-## About Laravel
+## 🚀 Fonctionnalités Principales
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Design "One-Page" Premium** : Navigation fluide avec défilement vers les différentes sections (Accueil, Nos Résidences, Services, Contact).
+- **Galerie Maçonnée (Masonry)** : Mise en valeur intelligente et élégante des photos des résidences grâce à CSS Grid et `object-cover`.
+- **Réservation Rapide** : Intégration d'un bouton de réservation direct vers **WhatsApp** avec message pré-rempli.
+- **Responsive Design** : Interface parfaitement adaptée aux mobiles, tablettes et ordinateurs.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Stack Technique
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Framework PHP :** [Laravel 11](https://laravel.com)
+- **Framework CSS :** [Tailwind CSS v4](https://tailwindcss.com) (Thème et design system personnalisés)
+- **Environnement de Dev :** Docker via [Laravel Sail](https://laravel.com/docs/sail)
+- **Runtime :** PHP 8.4
 
-## Learning Laravel
+## 📦 Installation & Déploiement Local
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+L'environnement de développement est géré par **Docker (Laravel Sail)** pour garantir la compatibilité et la simplicité d'installation.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Prérequis
+- Docker Desktop installé et en cours d'exécution.
+- Composer installé localement (ou utiliser une image Docker).
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Étapes d'installation
 
-## Agentic Development
+1. **Cloner le dépôt :**
+   ```bash
+   git clone https://github.com/yvesleopoldbeugre/guya-resi.git
+   cd guya-resi
+   ```
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+2. **Installer les dépendances PHP :**
+   ```bash
+   composer install
+   ```
 
-```bash
-composer require laravel/boost --dev
+3. **Configurer l'environnement :**
+   ```bash
+   cp .env.example .env
+   ```
+   *(Assurez-vous que les ports dans `.env` sont libres, par défaut `APP_PORT=8001` et `VITE_PORT=5174` pour ce projet afin d'éviter les conflits).*
 
-php artisan boost:install
-```
+4. **Démarrer les conteneurs Docker (Sail) :**
+   ```bash
+   ./vendor/bin/sail up -d
+   ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+5. **Générer la clé d'application et migrer la base de données :**
+   ```bash
+   ./vendor/bin/sail artisan key:generate
+   ./vendor/bin/sail artisan migrate
+   ```
 
-## Contributing
+6. **Compiler les ressources front-end (Vite) :**
+   *Note : Le projet utilise temporairement le CDN de Tailwind v4 pour le prototypage rapide. Pour une compilation locale complète :*
+   ```bash
+   ./vendor/bin/sail npm install
+   ./vendor/bin/sail npm run build
+   # ou pour le mode développement :
+   ./vendor/bin/sail npm run dev
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. **Accéder au site :**
+   Ouvrez votre navigateur et rendez-vous sur : [http://localhost:8001](http://localhost:8001)
 
-## Code of Conduct
+## 🎨 Design System
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Le fichier de base `app.blade.php` intègre un thème personnalisé avec les couleurs de la marque :
+- **Or (Gold) :** `#D4AF37`
+- **Anthracite :** `#1A1A1A`
+- **Typographie :** *Playfair Display* (Titres) et *Inter* (Textes de corps).
 
-## Security Vulnerabilities
+## 📝 Licence
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Ce projet est la propriété de Guya Resi. Tous droits réservés.
