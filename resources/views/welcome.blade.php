@@ -2,11 +2,71 @@
 
 @section('title', 'Guya Resi - Votre Confort, Notre Engagement')
 
+@section('meta_description', 'Découvrez la 1ère résidence meublée de Guya Resi à Abidjan Angré Nouveau CHU. Cadre moderne, sécurisé 24h/24, Wi-Fi haut débit, climatisation et literie orthopédique.')
+
+@section('structured_data')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Guya Resi",
+  "description": "Résidence meublée d'exception à Abidjan Angré Nouveau CHU. Sécurisée 24h/24, avec climatisation, Wi-Fi haut débit et literie orthopédique.",
+  "image": [
+    "{{ asset('images/room1.jpg') }}",
+    "{{ asset('images/room2.jpg') }}",
+    "{{ asset('images/room3.jpg') }}"
+  ],
+  "telephone": "+2250799943674",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Angré Nouveau CHU base CIE, Carrefour Hadja",
+    "addressLocality": "Abidjan",
+    "addressRegion": "Lagunes",
+    "addressCountry": "CI"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "5.4079",
+    "longitude": "-3.9687"
+  },
+  "url": "{{ url('/') }}",
+  "priceRange": "$$",
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Climatisation",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Wi-Fi Haut Débit",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Eau Chaude",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Literie Orthopédique",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Sécurité 24h/24",
+      "value": true
+    }
+  ]
+}
+</script>
+@endsection
+
 @section('content')
     <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden bg-anthracite">
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/room1.jpg') }}" alt="Guya Resi Interior" class="w-full h-full object-cover scale-105 animate-slow-zoom">
+            <img src="{{ asset('images/room1.jpg') }}" alt="Chambre de luxe climatisée à Abidjan Angré - Guya Resi" class="w-full h-full object-cover scale-105 animate-slow-zoom">
             <div class="absolute inset-0 bg-black/60"></div>
         </div>
 
@@ -100,7 +160,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Left Column (Large Feature Image) -->
                 <div class="group overflow-hidden relative h-[400px] md:h-[600px] rounded-xl shadow-lg">
-                    <img src="{{ asset('images/room1.jpg') }}" alt="Chambre Principale" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 object-center">
+                    <img src="{{ asset('images/room1.jpg') }}" alt="Chambre principale spacieuse avec literie orthopédique - Guya Resi" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 object-center">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8">
                         <h4 class="text-white text-2xl font-serif tracking-wide">Vue Complète</h4>
                     </div>
@@ -109,14 +169,14 @@
                 <!-- Right Column (Two Stacked Images) -->
                 <div class="grid grid-rows-2 gap-6 md:h-[600px]">
                     <div class="group overflow-hidden relative rounded-xl shadow-lg h-[250px] md:h-auto">
-                        <img src="{{ asset('images/room2.jpg') }}" alt="Espace Confort" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 object-center">
+                        <img src="{{ asset('images/room2.jpg') }}" alt="Espace couchage et décoration moderne chic à Guya Resi Abidjan" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 object-center">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-6">
                             <h4 class="text-white text-xl font-serif tracking-wide">Espace Couchage</h4>
                         </div>
                     </div>
 
                     <div class="group overflow-hidden relative rounded-xl shadow-lg h-[250px] md:h-auto">
-                        <img src="{{ asset('images/room3.jpg') }}" alt="Aperçu Chambre" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 object-center">
+                        <img src="{{ asset('images/room3.jpg') }}" alt="Entrée lumineuse et design contemporain à Guya Resi" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 object-center">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-6">
                             <h4 class="text-white text-xl font-serif tracking-wide">Entrée Lumineuse</h4>
                         </div>
@@ -168,7 +228,7 @@
             <!-- Fake Map / Visual Placeholder -->
             <div class="w-full h-[400px] bg-gray-800 rounded-xl overflow-hidden relative group">
                 <!-- If you have a Google Maps embed code, replace the image below with the iframe -->
-                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1000" alt="Map View" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1000" alt="Plan d'accès et localisation de Guya Resi à Angré Nouveau CHU" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition duration-500">
                 <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                     <span class="text-4xl mb-4">📍</span>
                     <h3 class="text-xl font-bold font-serif mb-2 text-white">Carrefour Hadja</h3>

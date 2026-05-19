@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="@yield('meta_description', 'Découvrez Guya Resi à Abidjan, Angré Nouveau CHU. Des résidences meublées d\'exception alliant sécurité, confort absolu et modernité pour vos courts et longs séjours.')">
+    <meta name="keywords" content="residence meublee abidjan, appartement meuble angre, location court sejour abidjan, guya resi, residence de luxe abidjan, hebergement abidjan">
+    <link rel="canonical" href="{{ request()->url() }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:title" content="@yield('title', 'Guya Resi - Votre Confort, Notre Engagement')">
+    <meta property="og:description" content="@yield('meta_description', 'Découvrez Guya Resi à Abidjan, Angré Nouveau CHU. Des résidences meublées d\'exception alliant sécurité, confort absolu et modernité pour vos courts et longs séjours.')">
+    <meta property="og:image" content="{{ asset('images/room1.jpg') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ request()->url() }}">
+    <meta property="twitter:title" content="@yield('title', 'Guya Resi - Votre Confort, Notre Engagement')">
+    <meta property="twitter:description" content="@yield('meta_description', 'Découvrez Guya Resi à Abidjan, Angré Nouveau CHU. Des résidences meublées d\'exception alliant sécurité, confort absolu et modernité pour vos courts et longs séjours.')">
+    <meta property="twitter:image" content="{{ asset('images/room1.jpg') }}">
+
     <title>@yield('title', 'Guya Resi - Votre Confort, Notre Engagement')</title>
 
     <!-- Fonts -->
@@ -28,6 +47,7 @@
             --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
         }
     </style>
+    @yield('structured_data')
 </head>
 <body class="font-sans antialiased bg-soft-white text-anthracite">
     <div class="min-h-screen">
