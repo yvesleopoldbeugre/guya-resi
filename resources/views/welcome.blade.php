@@ -27,7 +27,7 @@
             </p>
             
             <div class="flex flex-col md:flex-row items-center justify-center gap-6 animate-fade-in-up delay-300">
-                <a href="tel:0799943674" class="w-full md:w-auto bg-gold text-anthracite px-10 py-5 rounded-sm font-bold uppercase tracking-widest hover:bg-gold-dark transition-all duration-300 shadow-xl">
+                <a href="https://wa.me/2250799943674?text=Bonjour%20Guya%20Resi,%20je%20souhaite%20réserver%20une%20chambre." target="_blank" data-track="hero_whatsapp" class="w-full md:w-auto bg-gold text-anthracite px-10 py-5 rounded-sm font-bold uppercase tracking-widest hover:bg-gold-dark transition-all duration-300 shadow-xl text-center">
                     Réserver Maintenant
                 </a>
                 <a href="#services" class="w-full md:w-auto border border-white/30 text-white px-10 py-5 rounded-sm font-bold uppercase tracking-widest hover:bg-white hover:text-anthracite transition-all duration-300 backdrop-blur-sm">
@@ -47,7 +47,7 @@
     </section>
 
     <!-- Features Section Placeholder -->
-    <section id="services" class="py-24 bg-white px-8 md:px-16">
+    <section id="services" data-section="services" class="py-24 bg-white px-8 md:px-16">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-serif text-anthracite mb-4">Confort & Modernité</h2>
@@ -89,7 +89,7 @@
     </section>
 
     <!-- Gallery Section (Nos Résidences) -->
-    <section id="residences" class="py-24 bg-soft-white px-8 md:px-16">
+    <section id="residences" data-section="residences" class="py-24 bg-soft-white px-8 md:px-16">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-serif text-anthracite mb-4">La 1ère Résidence</h2>
@@ -125,7 +125,7 @@
             </div>
             
             <div class="text-center mt-12">
-                <a href="https://wa.me/2250799943674" target="_blank" class="inline-block border-2 border-anthracite text-anthracite px-10 py-4 uppercase font-bold tracking-widest hover:bg-anthracite hover:text-white transition duration-300">
+                <a href="https://wa.me/2250799943674" target="_blank" data-track="gallery_whatsapp" class="inline-block border-2 border-anthracite text-anthracite px-10 py-4 uppercase font-bold tracking-widest hover:bg-anthracite hover:text-white transition duration-300">
                     Plus de photos sur WhatsApp
                 </a>
             </div>
@@ -133,7 +133,7 @@
     </section>
 
     <!-- Contact & Map Section -->
-    <section id="contact" class="py-24 bg-anthracite text-white px-8 md:px-16">
+    <section id="contact" data-section="contact" class="py-24 bg-anthracite text-white px-8 md:px-16">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <!-- Contact Info -->
             <div>
@@ -172,7 +172,7 @@
                 <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                     <span class="text-4xl mb-4">📍</span>
                     <h3 class="text-xl font-bold font-serif mb-2 text-white">Carrefour Hadja</h3>
-                    <a href="https://maps.google.com/?q=Angre+Nouveau+CHU" target="_blank" class="mt-4 bg-gold text-anthracite px-6 py-2 rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-white transition">Ouvrir Google Maps</a>
+                    <a href="https://maps.google.com/?q=Angre+Nouveau+CHU" target="_blank" data-track="contact_maps" class="mt-4 bg-gold text-anthracite px-6 py-2 rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-white transition">Ouvrir Google Maps</a>
                 </div>
             </div>
         </div>
@@ -198,4 +198,55 @@
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.4s; }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+            if (!csrfMeta) return;
+            const csrfToken = csrfMeta.getAttribute('content');
+
+            const trackEvent = (category, name) => {
+                fetch('/track', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: JSON.stringify({ category, name })
+                }).catch(err => console.error('Tracking error:', err));
+            };
+
+            // 1. Button click tracking
+            document.querySelectorAll('[data-track]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const name = btn.getAttribute('data-track');
+                    trackEvent('button_click', name);
+                });
+            });
+
+            // 2. Section view tracking
+            const trackedSections = new Set();
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // 20% of section visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionName = entry.target.getAttribute('data-section');
+                        if (!trackedSections.has(sectionName)) {
+                            trackedSections.add(sectionName);
+                            trackEvent('section_view', sectionName);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('[data-section]').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 @endsection

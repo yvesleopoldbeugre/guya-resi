@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::get('/stats', [StatsController::class, 'index'])->name('stats');
+use App\Http\Controllers\TrackingController;
+Route::post('/track', [TrackingController::class, 'store'])->name('track');

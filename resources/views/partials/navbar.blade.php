@@ -9,7 +9,7 @@
             <a href="#residences" class="text-white hover:text-gold transition">Nos Résidences</a>
             <a href="#services" class="text-white hover:text-gold transition">Services</a>
             <a href="#contact" class="text-white hover:text-gold transition">Contact</a>
-            <a href="https://wa.me/2250799943674?text=Bonjour%20Guya%20Resi,%20je%20souhaite%20obtenir%20des%20informations%20pour%20réserver%20un%20séjour." target="_blank" class="bg-gold text-anthracite px-6 py-3 rounded-sm hover:bg-gold-dark transition font-bold shadow-lg">Réserver</a>
+            <a href="https://wa.me/2250799943674?text=Bonjour%20Guya%20Resi,%20je%20souhaite%20obtenir%20des%20informations%20pour%20réserver%20un%20séjour." target="_blank" data-track="navbar_whatsapp" class="bg-gold text-anthracite px-6 py-3 rounded-sm hover:bg-gold-dark transition font-bold shadow-lg">Réserver</a>
         </div>
 
         <div class="md:hidden">

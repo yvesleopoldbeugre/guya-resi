@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Visit;
+use App\Models\TrackingEvent;
 use Carbon\Carbon;
 
 class StatsController extends Controller
@@ -30,6 +31,23 @@ class StatsController extends Controller
             ]);
         }
 
-        return view('stats', compact('totalViews', 'totalUniqueVisitors', 'todayViews', 'todayUnique', 'last7Days'));
+        // Section Views Stats
+        $sectionViews = TrackingEvent::where('event_category', 'section_view')
+            ->selectRaw('event_name, count(*) as total')
+            ->groupBy('event_name')
+            ->pluck('total', 'event_name')
+            ->toArray();
+
+        // Button Clicks Stats
+        $buttonClicks = TrackingEvent::where('event_category', 'button_click')
+            ->selectRaw('event_name, count(*) as total')
+            ->groupBy('event_name')
+            ->pluck('total', 'event_name')
+            ->toArray();
+
+        return view('stats', compact(
+            'totalViews', 'totalUniqueVisitors', 'todayViews', 'todayUnique', 'last7Days',
+            'sectionViews', 'buttonClicks'
+        ));
     }
 }
