@@ -7,8 +7,8 @@
 @section('structured_data')
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
+  "@@context": "https://schema.org",
+  "@@type": "LodgingBusiness",
   "name": "Guya Resi",
   "description": "Résidence meublée d'exception à Abidjan Angré Nouveau CHU. Sécurisée 24h/24, avec climatisation, Wi-Fi haut débit et literie orthopédique.",
   "image": [
@@ -18,14 +18,14 @@
   ],
   "telephone": "+2250799943674",
   "address": {
-    "@type": "PostalAddress",
+    "@@type": "PostalAddress",
     "streetAddress": "Angré Nouveau CHU base CIE, Carrefour Hadja",
     "addressLocality": "Abidjan",
     "addressRegion": "Lagunes",
     "addressCountry": "CI"
   },
   "geo": {
-    "@type": "GeoCoordinates",
+    "@@type": "GeoCoordinates",
     "latitude": "5.4079",
     "longitude": "-3.9687"
   },
@@ -33,27 +33,27 @@
   "priceRange": "$$",
   "amenityFeature": [
     {
-      "@type": "LocationFeatureSpecification",
+      "@@type": "LocationFeatureSpecification",
       "name": "Climatisation",
       "value": true
     },
     {
-      "@type": "LocationFeatureSpecification",
+      "@@type": "LocationFeatureSpecification",
       "name": "Wi-Fi Haut Débit",
       "value": true
     },
     {
-      "@type": "LocationFeatureSpecification",
+      "@@type": "LocationFeatureSpecification",
       "name": "Eau Chaude",
       "value": true
     },
     {
-      "@type": "LocationFeatureSpecification",
+      "@@type": "LocationFeatureSpecification",
       "name": "Literie Orthopédique",
       "value": true
     },
     {
-      "@type": "LocationFeatureSpecification",
+      "@@type": "LocationFeatureSpecification",
       "name": "Sécurité 24h/24",
       "value": true
     }
